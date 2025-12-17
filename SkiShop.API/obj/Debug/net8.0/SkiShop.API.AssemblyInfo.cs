@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SkiShop.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6cfa0f149e12d41788493e30da079806ccc5cfaf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3654b7b4344f159cbcce962cc6176b68179a1853")]
 [assembly: System.Reflection.AssemblyProductAttribute("SkiShop.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SkiShop.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
