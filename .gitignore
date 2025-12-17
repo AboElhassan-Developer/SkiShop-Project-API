@@ -1,0 +1,9 @@
+# ASP.NET Core
+appsettings.Development.json
+
+# Build folders
+bin/
+obj/
+
+# User-specific files
+.vs/
