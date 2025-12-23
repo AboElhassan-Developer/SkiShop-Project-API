@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3tstOFYwVbo=",
+  "dgSpecHash": "qhnRFLa1zSc=",
   "success": true,
-  "projectFilePath": "F:\\SkiShop-Project\\backend\\Core\\Core.csproj",
+  "projectFilePath": "F:\\SkiShop-Project\\SkiShop-Project-API\\Core\\Core.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

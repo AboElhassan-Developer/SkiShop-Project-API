@@ -28,7 +28,7 @@ namespace SkiShop.API.Controllers
         }
         
         
-        [HttpGet("enternalerror")]
+        [HttpGet("internalerror")]
         public IActionResult GetEnternalError()
         {
            throw new Exception("This is an internal server error example.");

@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\SkiShop-Project\\backend\\Core\\Core.csproj",
+      "projectUniqueName": "F:\\SkiShop-Project\\SkiShop-Project-API\\Core\\Core.csproj",
       "projectName": "Core",
-      "projectPath": "F:\\SkiShop-Project\\backend\\Core\\Core.csproj",
+      "projectPath": "F:\\SkiShop-Project\\SkiShop-Project-API\\Core\\Core.csproj",
       "packagesPath": "C:\\Users\\original\\.nuget\\packages\\",
-      "outputPath": "F:\\SkiShop-Project\\backend\\Core\\obj\\",
+      "outputPath": "F:\\SkiShop-Project\\SkiShop-Project-API\\Core\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

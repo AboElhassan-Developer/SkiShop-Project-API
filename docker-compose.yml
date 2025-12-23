@@ -1,0 +1,23 @@
+services:
+  sql:
+    image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "Password@1"
+    ports:
+      - "1433:1433"
+    container_name: skishop-sql
+    volumes:
+     - sql-data:/var/opt/mssql
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    volumes:
+    - redis-data:/data
+
+volumes:
+    sql-data:
+    redis-data: 
+
