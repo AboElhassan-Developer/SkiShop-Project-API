@@ -289,3 +289,4 @@ F:\SkiShop-Project\SkiShop-Project-API\SkiShop.API\bin\Debug\net8.0\Pipelines.So
 F:\SkiShop-Project\SkiShop-Project-API\SkiShop.API\bin\Debug\net8.0\StackExchange.Redis.dll
 F:\SkiShop-Project\SkiShop-Project-API\SkiShop.API\bin\Debug\net8.0\System.IO.Hashing.dll
 F:\SkiShop-Project\SkiShop-Project-API\SkiShop.API\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+F:\SkiShop-Project\SkiShop-Project-API\SkiShop.API\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll

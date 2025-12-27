@@ -1,4 +1,5 @@
 
+using Core.Entities;
 using Core.Interfaces;
 using Infrastructure.Data;
 using Infrastructure.Services;
@@ -40,6 +41,10 @@ namespace SkiShop.API
                 return ConnectionMultiplexer.Connect(configration);
             });
             builder.Services.AddSingleton<ICartService, CartService>();
+            builder.Services.AddAuthorization();
+            builder.Services.AddIdentityApiEndpoints<AppUser>()
+                .AddEntityFrameworkStores<StoreContext>();
+                
 
             var app = builder.Build();
 
@@ -55,9 +60,10 @@ namespace SkiShop.API
             app.UseAuthorization();
 
             app.UseMiddleware<ExceptionMiddleware>();
-            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod()
+            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowCredentials()
             .WithOrigins("https://localhost:4200", "http://localhost:4200"));
             app.MapControllers();
+            app.MapGroup("api").MapIdentityApi<AppUser>(); // API/login
 
             try
             {
