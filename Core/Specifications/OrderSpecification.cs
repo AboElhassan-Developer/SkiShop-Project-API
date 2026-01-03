@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Core.Specifications
 {
-   public class OrderSpecification: BaseSpecification<Order>
+    public class OrderSpecification : BaseSpecification<Order>
     {
-        public OrderSpecification(string email):base(o => o.BuyerEmail == email)
+        public OrderSpecification(string email) : base(o => o.BuyerEmail == email)
         {
-        AddInclude(i => i.OrderItems);
+            AddInclude(i => i.OrderItems);
             AddInclude(i => i.DeliveryMethod);
             AddOrderByDescending(o => o.OrderDate);
         }
@@ -22,5 +22,11 @@ namespace Core.Specifications
             AddInclude("DeliveryMethod ");
         }
 
+        public OrderSpecification(string paymentIntentId, bool isPaymentIntent)
+            : base(o => o.PaymentIntentId == paymentIntentId)
+        {
+            AddInclude("OrderItems");
+            AddInclude("DeliveryMethod ");
+        }
     }
 }

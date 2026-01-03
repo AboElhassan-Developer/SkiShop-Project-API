@@ -5,6 +5,7 @@ using Infrastructure.Data;
 using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using SkiShop.API.Middleware;
+using SkiShop.API.SignalR;
 using StackExchange.Redis;
 using System.Threading.Tasks;
 
@@ -46,6 +47,7 @@ namespace SkiShop.API
             builder.Services.AddIdentityApiEndpoints<AppUser>()
                 .AddEntityFrameworkStores<StoreContext>();
             builder.Services.AddScoped<IPaymentService, PaymentService>();
+            builder.Services.AddSignalR();
 
             var app = builder.Build();
 
@@ -58,7 +60,7 @@ namespace SkiShop.API
 
             app.UseHttpsRedirection();
 
-            app.UseAuthorization();
+           
 
             app.UseMiddleware<ExceptionMiddleware>();
 
@@ -68,9 +70,15 @@ namespace SkiShop.API
         .AllowAnyHeader()
         .AllowCredentials());
 
+            app.UseAuthentication();
+            app.UseAuthorization();
+
+
             app.MapControllers();
 
             app.MapGroup("api").MapIdentityApi<AppUser>(); // API/login
+
+            app.MapHub<NotificationHub>("/hub/notifications");
 
             builder.Services.AddAuthorization();
             try

@@ -512,6 +512,16 @@
     ]
   },
   {
+    "ContainingType": "SkiShop.API.Controllers.PaymentsController",
+    "Method": "StripeWebhook",
+    "RelativePath": "api/Payments/webhook",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "SkiShop.API.Controllers.ProductsController",
     "Method": "GetProducts",
     "RelativePath": "api/Products",
