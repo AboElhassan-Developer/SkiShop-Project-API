@@ -11,7 +11,7 @@ namespace SkiShop.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductsController(IGenericRepository<Product> repo) : BaseApiController
+    public class ProductsController(IUnitOfWork unit) : BaseApiController
     {
        
         [HttpGet]
@@ -20,13 +20,13 @@ namespace SkiShop.API.Controllers
         {
            var spec = new ProductSpecification(specParams);
 
-            return await CreatePageResult (repo,spec, specParams.PageIndex, specParams.PageSize);
+            return await CreatePageResult (unit.Repository<Product>(),spec, specParams.PageIndex, specParams.PageSize);
 
         }
         [HttpGet ("{id:int}")]
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
-            var product = await repo.GetByIdAsync(id);
+            var product = await unit.Repository<Product>().GetByIdAsync(id);
             if (product == null)
             {
                 return NotFound();
@@ -36,8 +36,8 @@ namespace SkiShop.API.Controllers
         [HttpPost]
         public async Task<ActionResult<Product>> CreateProduct(Product product)
         {
-            repo.Add(product);
-            if (await repo.SaveAllAsync())
+            unit.Repository<Product>().Add(product);
+            if (await unit.Complete())
             {
                 return CreatedAtAction("GetProduct",new {id=product.Id}, product);
             }
@@ -49,10 +49,10 @@ namespace SkiShop.API.Controllers
             if (product.Id !=id || !ProductExists(id))
             
                 return BadRequest("Cannot Update this Product");
-            
-            repo.Update(product);
 
-           if(await repo.SaveAllAsync())
+            unit.Repository<Product>().Update(product);
+
+           if(await unit.Complete())
             {
                 return NoContent();
             }
@@ -62,13 +62,13 @@ namespace SkiShop.API.Controllers
         [HttpDelete("{id:int}")]
         public async Task<ActionResult> DeleteProduct(int id)
         {
-            var product =await repo.GetByIdAsync(id);
+            var product =await unit.Repository<Product>().GetByIdAsync(id);
             if (product == null)
             {
                 return NotFound();
             }
-            repo.Remove(product);
-            if (await repo.SaveAllAsync())
+            unit.Repository<Product>().Remove(product);
+            if (await unit.Complete())
             {
                 return NoContent();
             }
@@ -82,19 +82,19 @@ namespace SkiShop.API.Controllers
         public async Task<ActionResult<IReadOnlySet<string>>> GetBrands()
         {
            var spec = new BrandListSpecification();
-            var brands = await repo.ListAsync(spec);
+            var brands = await unit.Repository<Product>().ListAsync(spec);
             return Ok(brands);
         }
         [HttpGet("types")]
         public async Task<ActionResult<IReadOnlySet<string>>> GetTypes()
         {
            var spec = new TypeListSpecification();
-            var types = await repo.ListAsync(spec);
+            var types = await unit.Repository<Product>().ListAsync(spec);
             return Ok(types);
         }
         private bool ProductExists(int id)
         {
-            return repo.Exists(id);
+            return unit.Repository<Product>().Exists(id);
         }
     }
 }

@@ -38,6 +38,9 @@ namespace SkiShop.API.Controllers
             return Ok();
 
         }
+
+
+
         [Authorize]
         [HttpPost("logout")]
         public async Task <ActionResult> Logout()
@@ -65,7 +68,7 @@ namespace SkiShop.API.Controllers
             });
                 
         }
-        [HttpGet]
+        [HttpGet("auth-status")]
         public ActionResult GetAuthState()
         {
 

@@ -5,6 +5,7 @@ using Infrastructure.Data;
 using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using SkiShop.API.Middleware;
+using SkiShop.API.SignalR;
 using StackExchange.Redis;
 using System.Threading.Tasks;
 
@@ -16,7 +17,7 @@ namespace SkiShop.API
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            // Add services to the container.hhh
 
             builder.Services.AddControllers();
 
@@ -31,6 +32,7 @@ namespace SkiShop.API
 
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
             builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             builder.Services.AddCors();
 
             builder.Services.AddSingleton<IConnectionMultiplexer>(config =>
@@ -41,10 +43,11 @@ namespace SkiShop.API
                 return ConnectionMultiplexer.Connect(configration);
             });
             builder.Services.AddSingleton<ICartService, CartService>();
-            builder.Services.AddAuthorization();
+           
             builder.Services.AddIdentityApiEndpoints<AppUser>()
                 .AddEntityFrameworkStores<StoreContext>();
-                
+            builder.Services.AddScoped<IPaymentService, PaymentService>();
+            builder.Services.AddSignalR();
 
             var app = builder.Build();
 
@@ -57,14 +60,30 @@ namespace SkiShop.API
 
             app.UseHttpsRedirection();
 
-            app.UseAuthorization();
+           
 
             app.UseMiddleware<ExceptionMiddleware>();
-            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowCredentials()
-            .WithOrigins("https://localhost:4200", "http://localhost:4200"));
+
+            app.UseCors(x => x
+        .WithOrigins("https://localhost:4200", "http://localhost:4200")
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+        .AllowCredentials());
+
+            app.UseAuthentication();
+            app.UseAuthorization();
+
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+
+
             app.MapControllers();
+
             app.MapGroup("api").MapIdentityApi<AppUser>(); // API/login
 
+            app.MapHub<NotificationHub>("/hub/notifications");
+            app.MapFallbackToFile("index.html");
+            //builder.Services.AddAuthorization();
             try
             {
                 using var scope = app.Services.CreateScope();

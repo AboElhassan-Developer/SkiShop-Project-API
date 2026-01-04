@@ -1,5 +1,8 @@
 # ASP.NET Core
 appsettings.Development.json
+appsettings.Production.json
+appsettings.*.json
+!appsettings.json
 
 # Build folders
 bin/
@@ -7,3 +10,35 @@ obj/
 
 # User-specific files
 .vs/
+.vscode/
+
+# User Secrets
+[Uu]ser[Ss]ecrets/
+secrets.json
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+
+# IDE
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+.idea/
+*.swp
+
+# Database
+*.db
+*.mdf
+*.ldf
+
+# OS
+.DS_Store
+Thumbs.db
