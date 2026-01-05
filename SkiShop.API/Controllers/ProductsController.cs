@@ -2,6 +2,7 @@
 using Core.Interfaces;
 using Core.Specifications;
 using Infrastructure.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -33,6 +34,7 @@ namespace SkiShop.API.Controllers
             }
             return product;
         }
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult<Product>> CreateProduct(Product product)
         {
@@ -43,6 +45,7 @@ namespace SkiShop.API.Controllers
             }
             return BadRequest("Problem creating product");
         }
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id:int}")]
         public async Task<ActionResult>UpdateProduct(int id, Product product)
         {
