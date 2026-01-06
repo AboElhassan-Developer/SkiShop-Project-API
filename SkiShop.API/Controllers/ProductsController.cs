@@ -14,7 +14,7 @@ namespace SkiShop.API.Controllers
     [ApiController]
     public class ProductsController(IUnitOfWork unit) : BaseApiController
     {
-       
+        [Cache(600)]
         [HttpGet]
         public async Task<ActionResult<IReadOnlySet<Product>>> GetProducts(
             [FromQuery]ProductSpecParams specParams)
@@ -24,6 +24,7 @@ namespace SkiShop.API.Controllers
             return await CreatePageResult (unit.Repository<Product>(),spec, specParams.PageIndex, specParams.PageSize);
 
         }
+        [Cache(600)]
         [HttpGet ("{id:int}")]
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
@@ -34,6 +35,7 @@ namespace SkiShop.API.Controllers
             }
             return product;
         }
+        [InvalidateCache("/api/products|")]
         [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult<Product>> CreateProduct(Product product)
@@ -45,6 +47,7 @@ namespace SkiShop.API.Controllers
             }
             return BadRequest("Problem creating product");
         }
+        [InvalidateCache("/api/products|")]
         [Authorize(Roles = "Admin")]
         [HttpPut("{id:int}")]
         public async Task<ActionResult>UpdateProduct(int id, Product product)
@@ -62,6 +65,8 @@ namespace SkiShop.API.Controllers
 
             return BadRequest("Problem updateing the product");
         }
+        [InvalidateCache("/api/products|")]
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id:int}")]
         public async Task<ActionResult> DeleteProduct(int id)
         {
@@ -80,7 +85,7 @@ namespace SkiShop.API.Controllers
 
             
         }
-
+        [Cache(10000)]
         [HttpGet("brands")]
         public async Task<ActionResult<IReadOnlySet<string>>> GetBrands()
         {
@@ -88,6 +93,7 @@ namespace SkiShop.API.Controllers
             var brands = await unit.Repository<Product>().ListAsync(spec);
             return Ok(brands);
         }
+        [Cache(10000)]
         [HttpGet("types")]
         public async Task<ActionResult<IReadOnlySet<string>>> GetTypes()
         {

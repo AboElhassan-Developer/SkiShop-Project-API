@@ -1,36 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "F:\\SkiShop-Project\\SkiShop-Project-API\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{397D68B8-124D-4D86-9D1E-1548C57E3726}|Core\\Core.csproj|f:\\skishop-project\\skishop-project-api\\core\\specifications\\orderspecification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{397D68B8-124D-4D86-9D1E-1548C57E3726}|Core\\Core.csproj|solutionrelative:core\\specifications\\orderspecification.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{397D68B8-124D-4D86-9D1E-1548C57E3726}|Core\\Core.csproj|f:\\skishop-project\\skishop-project-api\\core\\specifications\\productspecparams.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{397D68B8-124D-4D86-9D1E-1548C57E3726}|Core\\Core.csproj|solutionrelative:core\\specifications\\productspecparams.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E254CCD2-175B-42EF-BF6B-54530888E4ED}|SkiShop.API\\SkiShop.API.csproj|f:\\skishop-project\\skishop-project-api\\skishop.api\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E254CCD2-175B-42EF-BF6B-54530888E4ED}|SkiShop.API\\SkiShop.API.csproj|solutionrelative:skishop.api\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E254CCD2-175B-42EF-BF6B-54530888E4ED}|SkiShop.API\\SkiShop.API.csproj|f:\\skishop-project\\skishop-project-api\\skishop.api\\controllers\\baseapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E254CCD2-175B-42EF-BF6B-54530888E4ED}|SkiShop.API\\SkiShop.API.csproj|solutionrelative:skishop.api\\controllers\\baseapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{397D68B8-124D-4D86-9D1E-1548C57E3726}|Core\\Core.csproj|f:\\skishop-project\\skishop-project-api\\core\\entities\\orederaggregate\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{397D68B8-124D-4D86-9D1E-1548C57E3726}|Core\\Core.csproj|solutionrelative:core\\entities\\orederaggregate\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{397D68B8-124D-4D86-9D1E-1548C57E3726}|Core\\Core.csproj|f:\\skishop-project\\skishop-project-api\\core\\interfaces\\idtoconvertible.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{397D68B8-124D-4D86-9D1E-1548C57E3726}|Core\\Core.csproj|solutionrelative:core\\interfaces\\idtoconvertible.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{397D68B8-124D-4D86-9D1E-1548C57E3726}|Core\\Core.csproj|f:\\skishop-project\\skishop-project-api\\core\\specifications\\pagingparams.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{397D68B8-124D-4D86-9D1E-1548C57E3726}|Core\\Core.csproj|solutionrelative:core\\specifications\\pagingparams.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -38,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -51,97 +22,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Order.cs",
-              "DocumentMoniker": "F:\\SkiShop-Project\\SkiShop-Project-API\\Core\\Entities\\OrederAggregate\\Order.cs",
-              "RelativeDocumentMoniker": "Core\\Entities\\OrederAggregate\\Order.cs",
-              "ToolTip": "F:\\SkiShop-Project\\SkiShop-Project-API\\Core\\Entities\\OrederAggregate\\Order.cs",
-              "RelativeToolTip": "Core\\Entities\\OrederAggregate\\Order.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAA2wBwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-05T08:52:43.031Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "IDtoConvertible.cs",
-              "DocumentMoniker": "F:\\SkiShop-Project\\SkiShop-Project-API\\Core\\Interfaces\\IDtoConvertible.cs",
-              "RelativeDocumentMoniker": "Core\\Interfaces\\IDtoConvertible.cs",
-              "ToolTip": "F:\\SkiShop-Project\\SkiShop-Project-API\\Core\\Interfaces\\IDtoConvertible.cs",
-              "RelativeToolTip": "Core\\Interfaces\\IDtoConvertible.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-05T08:52:11.944Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "OrderSpecification.cs",
-              "DocumentMoniker": "F:\\SkiShop-Project\\SkiShop-Project-API\\Core\\Specifications\\OrderSpecification.cs",
-              "RelativeDocumentMoniker": "Core\\Specifications\\OrderSpecification.cs",
-              "ToolTip": "F:\\SkiShop-Project\\SkiShop-Project-API\\Core\\Specifications\\OrderSpecification.cs*",
-              "RelativeToolTip": "Core\\Specifications\\OrderSpecification.cs*",
-              "ViewState": "AgIAACAAAAAAAAAAAAA7wBUAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-05T08:18:11.355Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "PagingParams.cs",
-              "DocumentMoniker": "F:\\SkiShop-Project\\SkiShop-Project-API\\Core\\Specifications\\PagingParams.cs",
-              "RelativeDocumentMoniker": "Core\\Specifications\\PagingParams.cs",
-              "ToolTip": "F:\\SkiShop-Project\\SkiShop-Project-API\\Core\\Specifications\\PagingParams.cs",
-              "RelativeToolTip": "Core\\Specifications\\PagingParams.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-05T08:14:29.376Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ProductSpecParams.cs",
-              "DocumentMoniker": "F:\\SkiShop-Project\\SkiShop-Project-API\\Core\\Specifications\\ProductSpecParams.cs",
-              "RelativeDocumentMoniker": "Core\\Specifications\\ProductSpecParams.cs",
-              "ToolTip": "F:\\SkiShop-Project\\SkiShop-Project-API\\Core\\Specifications\\ProductSpecParams.cs",
-              "RelativeToolTip": "Core\\Specifications\\ProductSpecParams.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAcwBgAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-05T08:13:23.042Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AdminController.cs",
-              "DocumentMoniker": "F:\\SkiShop-Project\\SkiShop-Project-API\\SkiShop.API\\Controllers\\AdminController.cs",
-              "RelativeDocumentMoniker": "SkiShop.API\\Controllers\\AdminController.cs",
-              "ToolTip": "F:\\SkiShop-Project\\SkiShop-Project-API\\SkiShop.API\\Controllers\\AdminController.cs*",
-              "RelativeToolTip": "SkiShop.API\\Controllers\\AdminController.cs*",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAiwBcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-05T08:09:07.99Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "BaseApiController.cs",
-              "DocumentMoniker": "F:\\SkiShop-Project\\SkiShop-Project-API\\SkiShop.API\\Controllers\\BaseApiController.cs",
-              "RelativeDocumentMoniker": "SkiShop.API\\Controllers\\BaseApiController.cs",
-              "ToolTip": "F:\\SkiShop-Project\\SkiShop-Project-API\\SkiShop.API\\Controllers\\BaseApiController.cs",
-              "RelativeToolTip": "SkiShop.API\\Controllers\\BaseApiController.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAcwBQAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-05T08:53:15.882Z",
-              "EditorCaption": ""
             }
           ]
         }
