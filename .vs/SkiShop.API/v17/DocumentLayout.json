@@ -1,7 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "F:\\SkiShop-Project\\SkiShop-Project-API\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E254CCD2-175B-42EF-BF6B-54530888E4ED}|SkiShop.API\\SkiShop.API.csproj|f:\\skishop-project\\skishop-project-api\\skishop.api\\skishop.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{E254CCD2-175B-42EF-BF6B-54530888E4ED}|SkiShop.API\\SkiShop.API.csproj|solutionrelative:skishop.api\\skishop.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -22,6 +27,19 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SkiShop.API",
+              "DocumentMoniker": "F:\\SkiShop-Project\\SkiShop-Project-API\\SkiShop.API\\SkiShop.API.csproj",
+              "RelativeDocumentMoniker": "SkiShop.API\\SkiShop.API.csproj",
+              "ToolTip": "F:\\SkiShop-Project\\SkiShop-Project-API\\SkiShop.API\\SkiShop.API.csproj",
+              "RelativeToolTip": "SkiShop.API\\SkiShop.API.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-01-06T14:48:37.134Z",
+              "EditorCaption": ""
             }
           ]
         }

@@ -134,6 +134,32 @@
     ]
   },
   {
+    "ContainingType": "SkiShop.API.Controllers.AdminController",
+    "Method": "RefundOrder",
+    "RelativePath": "api/Admin/orders/refund/{id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "SkiShop.API.DTOs.OrderDto",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "SkiShop.API.Controllers.BuggyController",
     "Method": "GetAdminSecret",
     "RelativePath": "api/Buggy/admin-secret",
