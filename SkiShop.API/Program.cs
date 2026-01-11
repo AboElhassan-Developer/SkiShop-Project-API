@@ -34,6 +34,9 @@ namespace SkiShop.API
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
             builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+
+
             builder.Services.AddCors();
 
             builder.Services.AddSingleton<IConnectionMultiplexer>(config =>
@@ -52,6 +55,21 @@ namespace SkiShop.API
 
             builder.Services.AddScoped<IPaymentService, PaymentService>();
             builder.Services.AddSignalR();
+
+
+
+
+            builder.Services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.SameSite = SameSiteMode.None;
+                options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+                options.Cookie.HttpOnly = true;
+
+
+
+            });
+
+
 
             var app = builder.Build();
 
@@ -83,7 +101,7 @@ namespace SkiShop.API
 
             app.MapControllers();
 
-            app.MapGroup("api").MapIdentityApi<AppUser>(); // API/login
+            //app.MapGroup("api").MapIdentityApi<AppUser>(); // API/login
 
             app.MapHub<NotificationHub>("/hub/notifications");
             app.MapFallbackToFile("index.html");

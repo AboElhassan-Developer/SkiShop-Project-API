@@ -19,7 +19,7 @@ namespace SkiShop.API.Controllers
        IUnitOfWork unit,ILogger<PaymentsController> logger,
        IConfiguration config ,IHubContext<NotificationHub> hubContext) : BaseApiController
     {
-        private readonly string _whSecret = "";
+        private readonly string _whSecret = config["StripeSettings:WhSecret"]!;
         [Authorize]
         [HttpPost("{cartId}")]
         public async Task<ActionResult<ShoppingCart>> CreateOrUpdatePaymentIntent(string cartId)

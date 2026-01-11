@@ -20,7 +20,7 @@ namespace SkiShop.API.Controllers
         {
             var email = User.GetEmail();
             var cart = await cartService.GetCartAsync(orderDto.CartId);
-            if (cart == null) return BadRequest("Problem with your cart");
+            if (cart == null) return BadRequest("Cart not found");
 
             if (cart.PaymentIntentId == null)
             {
