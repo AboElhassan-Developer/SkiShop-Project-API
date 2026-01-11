@@ -40,6 +40,29 @@ namespace SkiShop.API.Controllers
         }
 
 
+        [HttpPost("login")]
+        public async Task<ActionResult> Login(LoginDto loginDto)
+        {
+            var result = await signInManager.PasswordSignInAsync(loginDto.Email, loginDto.Password, isPersistent: false, lockoutOnFailure: false);
+
+            if (!result.Succeeded)
+            {
+                return Unauthorized();
+            }
+
+            var user = await signInManager.UserManager.FindByEmailAsync(loginDto.Email);
+            var roles = await signInManager.UserManager.GetRolesAsync(user);
+
+            return Ok(new
+            {
+                user.FirstName,
+                user.LastName,
+                user.Email,
+                Roles = roles
+            });
+        }
+
+
 
         [Authorize]
         [HttpPost("logout")]

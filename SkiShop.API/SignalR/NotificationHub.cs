@@ -6,6 +6,7 @@ using System.Collections.Concurrent;
 namespace SkiShop.API.SignalR
 {
     [Authorize]
+   
     public class NotificationHub :Hub
     {
         private static readonly ConcurrentDictionary<string, string> UserConnections = new();
