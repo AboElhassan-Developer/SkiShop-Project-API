@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
 using SkiShop.API.Extentions;
 using SkiShop.API.SignalR;
+using SkiShop.API.DTOs;
 using Stripe;
 
 namespace SkiShop.API.Controllers
@@ -64,40 +65,72 @@ namespace SkiShop.API.Controllers
             }
         }
 
+
         private async Task HandlePaymentIntentSuccessed(PaymentIntent intent)
         {
-           if(intent.Status == "succeeded")
+            if (intent.Status == "succeeded")
             {
-                var spec=new OrderSpecification(intent.Id,true);
-                var order=await unit.Repository<Core.Entities.OrederAggregate.Order>().GetEntityWithSpec(spec)
-                    ??throw new Exception("Order not found");
+                var spec = new OrderSpecification(intent.Id, true);
+                Core.Entities.OrederAggregate.Order? order = null;
 
-                if((long)order.GetTotal() * 100 != intent.Amount )
+                var retryCount = 0;
+                while (order == null && retryCount < 5)
                 {
+                    order = await unit.Repository<Core.Entities.OrederAggregate.Order>()
+                        .GetEntityWithSpec(spec);
+
+                    if (order == null)
+                    {
+                        retryCount++;
+                        await Task.Delay(2000);
+                    }
+                }
+
+                if (order == null)
+                    throw new Exception("Order not found after retries");
+
+                if ((long)order.GetTotal() * 100 != intent.Amount)
                     order.Status = OrderStatus.PaymentMismatch;
-                }
                 else
-                {
                     order.Status = OrderStatus.paymentReceived;
-                }
+
+                var orderToReturn = order.ToDto();
+                unit.Repository<Core.Entities.OrederAggregate.Order>().Update(order);
                 await unit.Complete();
+
                 var connectionId = NotificationHub.GetConnectionIDByEmail(order.BuyerEmail);
-                if(!string.IsNullOrEmpty(connectionId))
+                if (!string.IsNullOrEmpty(connectionId))
                 {
                     await hubContext.Clients.Client(connectionId)
-                        .SendAsync("OrderCompleteNotification", order.ToDto());
+                        .SendAsync("OrderCompleteNotification", orderToReturn);
                 }
-
             }
         }
+
+        [HttpPost("apply-coupon/{cartId}")]
+        public async Task<ActionResult<ShoppingCart>> ApplyCoupon(string cartId, [FromBody] ApplyCouponDto dto)
+        {
+            try
+            {
+                var cart = await paymentService.ApplyCouponToCart(cartId, dto.Code);
+                if (cart == null) return BadRequest("Problem with cart");
+                return Ok(cart);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
 
         private Event ConstructStripeEvent(string json)
         {
            try{
                return EventUtility.ConstructEvent(json, Request.Headers["Stripe-Signature"],
-                 _whSecret);
-              
-              }
+                 _whSecret,
+                     throwOnApiVersionMismatch: false);
+
+            }
             catch (Exception ex)
             {
                 logger.LogError(ex, "Failed to construct stripe event");

@@ -1,6 +1,7 @@
 ﻿using Core.Entities;
 using Core.Interfaces;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json.Linq;
 using Stripe;
 using System;
 using System.Collections.Generic;
@@ -37,9 +38,47 @@ namespace Infrastructure.Services
             return result.Status;
         }
 
+
+        public async Task<ShoppingCart?> ApplyCouponToCart(string cartId, string couponCode)
+        {
+            var cart = await cartService.GetCartAsync(cartId);
+            if (cart == null) return null;
+
+            var promotionCodeService = new PromotionCodeService();
+            var promotionCodes = await promotionCodeService.ListAsync(new PromotionCodeListOptions
+            {
+                Code = couponCode,
+                Active = true,
+                Expand = ["data.coupon"]
+            });
+
+            var promotionCode = promotionCodes.FirstOrDefault();
+            if (promotionCode == null) throw new Exception("Invalid coupon code");
+
+            cart.CouponId = promotionCode.Id;
+
+           
+            var couponId = promotionCode.RawJObject["promotion"]?["coupon"]?.ToString();
+            if (couponId == null) throw new Exception("Invalid coupon");
+
+            var couponService = new CouponService();
+            var coupon = await couponService.GetAsync(couponId);
+
+            if (coupon.PercentOff.HasValue)
+            {
+                var subtotal = cart.Items.Sum(i => i.Quantity * i.Price);
+                cart.Discount = subtotal * (decimal)(coupon.PercentOff.Value / 100);
+            }
+            else if (coupon.AmountOff.HasValue)
+            {
+                cart.Discount = (decimal)(coupon.AmountOff.Value / 100);
+            }
+
+            await cartService.SetCartAsync(cart);
+            return cart;
+        }
         public async Task<ShoppingCart?> CreateOrUpdatePaymentIntent(string cartId)
         {
-             
             var cart = await cartService.GetCartAsync(cartId);
             if (cart == null) return null;
             var shippingPrice = 0m;
@@ -51,28 +90,28 @@ namespace Infrastructure.Services
             foreach (var item in cart.Items)
             {
                 var productItem = await unit.Repository<Product>().GetByIdAsync(item.ProductId);
-                if(productItem == null)
-                {
-                  return null;
-                }
+                if (productItem == null) return null;
                 if (item.Price != productItem.Price)
                 {
                     item.Price = productItem.Price;
                 }
             }
-            var service = new PaymentIntentService();
-            PaymentIntent? intent=null;
 
-            if(string.IsNullOrEmpty(cart.PaymentIntentId))
+            var discount = (long)(cart.Discount * 100); 
+
+            var service = new PaymentIntentService();
+            PaymentIntent? intent = null;
+
+            if (string.IsNullOrEmpty(cart.PaymentIntentId))
             {
                 var options = new PaymentIntentCreateOptions
                 {
                     Amount = (long)cart.Items.Sum(i => i.Quantity * (i.Price * 100))
-                    + (long)(shippingPrice * 100),
+                            + (long)(shippingPrice * 100)
+                            - discount, 
                     Currency = "usd",
-                    PaymentMethodTypes =["card"]
+                    PaymentMethodTypes = ["card"]
                 };
-
                 intent = await service.CreateAsync(options);
                 cart.PaymentIntentId = intent.Id;
                 cart.ClientSecret = intent.ClientSecret;
@@ -82,7 +121,8 @@ namespace Infrastructure.Services
                 var options = new PaymentIntentUpdateOptions
                 {
                     Amount = (long)cart.Items.Sum(i => i.Quantity * (i.Price * 100))
-                    + (long)(shippingPrice * 100),
+                            + (long)(shippingPrice * 100)
+                            - discount, 
                 };
                 intent = await service.UpdateAsync(cart.PaymentIntentId, options);
             }
@@ -90,6 +130,6 @@ namespace Infrastructure.Services
             return cart;
         }
 
-       
+
     }
 }

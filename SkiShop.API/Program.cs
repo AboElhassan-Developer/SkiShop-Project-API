@@ -31,7 +31,7 @@ namespace SkiShop.API
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddScoped<IProductRepository, ProductRepository>();
+           
             builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
@@ -101,10 +101,10 @@ namespace SkiShop.API
 
             app.MapControllers();
 
-            //app.MapGroup("api").MapIdentityApi<AppUser>(); // API/login
+            app.MapGroup("api").MapIdentityApi<AppUser>(); // API/login
 
             app.MapHub<NotificationHub>("/hub/notifications");
-            app.MapFallbackToFile("index.html");
+            app.MapFallbackToController("Index", "Fallback");
             //builder.Services.AddAuthorization();
             try
             {

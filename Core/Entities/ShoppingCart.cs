@@ -13,5 +13,7 @@ namespace Core.Entities
         public int? DeliveryMethodId { get; set; }
         public string? ClientSecret { get; set; } 
         public string? PaymentIntentId { get; set; }
+        public string? CouponId { get; set; }
+        public decimal Discount { get; set; }
     }
 }

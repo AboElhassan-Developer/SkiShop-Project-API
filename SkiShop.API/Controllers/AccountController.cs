@@ -86,8 +86,8 @@ namespace SkiShop.API.Controllers
                 user.FirstName,
                 user.LastName,
                 user.Email,
-                Adrress = user.Address?.ToDto(),
-                Role= User.FindFirstValue(ClaimTypes.Role)
+                Address = user.Address?.ToDto(),
+                Role = User.FindFirstValue(ClaimTypes.Role)
 
             });
                 

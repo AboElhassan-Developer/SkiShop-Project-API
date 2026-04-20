@@ -14,6 +14,7 @@ namespace SkiShop.API.DTOs
         public required PaymentSummary PaymentSummary { get; set; }
         public List<OrderItemDto> OrderItems { get; set; } 
         public decimal Subtotal { get; set; }
+        public decimal Discount { get; set; }
         public required string Status { get; set; } 
         public decimal Total { get; set; }
         public required string PaymentIntentId { get; set; }

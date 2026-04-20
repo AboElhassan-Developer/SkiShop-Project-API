@@ -62,6 +62,7 @@ namespace SkiShop.API.Controllers
                 ShippingAddress = orderDto.ShippingAddress,
                 PaymentSummary = orderDto.PaymentSummary,
                 Subtotal = items.Sum(x => x.Price * x.Quantity),
+                Discount = cart.Discount,
                 PaymentIntentId = cart.PaymentIntentId
 
 
@@ -71,7 +72,7 @@ namespace SkiShop.API.Controllers
             unit.Repository<Order>().Add(order);
             if (await unit.Complete())
             {
-                return Ok(order);
+                return Ok(order.ToDto());
             }
             return BadRequest("Problem creating order");
         }

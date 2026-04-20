@@ -14,19 +14,22 @@ namespace Infrastructure.Data
     {
         public static async Task SeedAsync(StoreContext context, UserManager<AppUser> userManager)
         {
-            if (!userManager.Users.Any(x => x.UserName == "admin@test.com"))
+            var admin = await userManager.FindByEmailAsync("admin@test.com");
+
+            if (admin == null)
             {
-                var user = new AppUser
+                admin = new AppUser
                 {
                     UserName = "admin@test.com",
                     Email = "admin@test.com"
-
                 };
-                await userManager.CreateAsync(user, "Pa$$w0rd");
-                await userManager.AddToRoleAsync(user, "Admin");
-
-
-                var path = Directory.GetCurrentDirectory();
+                await userManager.CreateAsync(admin, "Pa$$w0rd");
+            }
+            if (!await userManager.IsInRoleAsync(admin, "Admin"))
+            {
+                await userManager.AddToRoleAsync(admin, "Admin");
+            }
+            var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
                 if (!context.Products.Any())
                 {
@@ -41,7 +44,7 @@ namespace Infrastructure.Data
                 if (!context.DeliveryMethods.Any())
                 {
                     var dmData = await File
-                        .ReadAllTextAsync("../Infrastructure/Data/SeedData/delivery.json");
+                        .ReadAllTextAsync(path + @"/Data/SeedData/delivery.json");
                     var methods = JsonSerializer.Deserialize<List<DeliveryMethod>>(dmData);
                     if (methods == null) return;
                     context.DeliveryMethods.AddRange(methods);
@@ -50,4 +53,4 @@ namespace Infrastructure.Data
             }
         }
     }
-}
+
