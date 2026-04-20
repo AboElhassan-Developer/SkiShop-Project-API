@@ -11,5 +11,6 @@ namespace Core.Interfaces
     {
         Task<ShoppingCart>CreateOrUpdatePaymentIntent(string cartId);
        Task<string> RefundPayment(string paymentIntentId);
+        Task<ShoppingCart?> ApplyCouponToCart(string cartId, string couponCode);
     }
 }

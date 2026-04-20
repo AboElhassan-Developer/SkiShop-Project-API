@@ -1,11 +1,8 @@
 ﻿using Core.Entities;
 using Core.Interfaces;
 using Core.Specifications;
-using Infrastructure.Data;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using SkiShop.API.RequestHelpers;
 
 namespace SkiShop.API.Controllers
